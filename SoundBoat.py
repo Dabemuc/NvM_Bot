@@ -36,4 +36,4 @@ async def on_message(message):
                                        dbAPI.getAllSounds())
 
 
-client.run("ODY3NDI4MzUwODc2NTgxOTI5.YPg9mg.G4hv3iw1hdiYS0tGfvkpLNKkDVU")
+client.run("[Discord Token]")
