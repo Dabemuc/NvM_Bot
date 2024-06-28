@@ -1,10 +1,11 @@
 import discord
 import importlib
-from discord import FFmpegPCMAudio
-import time
+from SoundBoatFeatures.SoundBoatPlay import handle_play_command
 
-client = discord.Client()
-dbAPI = importlib.import_module("SoundBoatDBAPI")
+
+client = discord.Client(intents=discord.Intents.all())
+dbAPI = importlib.import_module("SoundBoatDBAPI")   # Initialize db
+voice_clients = {}    # Manage mulitple connected voice clients
 
 
 @client.event
@@ -20,15 +21,7 @@ async def on_message(message):
 
     if message.content.__contains__("!sb"):
         if message.content.__contains__("play"):
-            mp3ToPlay = message.content.split()[2]
-            await message.channel.send("Playing " + dbAPI.getFileName(mp3ToPlay))
-            channel = message.author.voice.channel
-            vc = await channel.connect()
-            source = FFmpegPCMAudio("./SoundBoat sounds/{}".format(dbAPI.getFileName(mp3ToPlay)))
-            player = vc.play(source)
-            while vc.is_playing():
-                time.sleep(0.2)
-            await vc.disconnect()
+            handle_play_command(message, client, voice_clients, dbAPI)
 
         if message.content.__contains__("help"):
             await message.channel.send("To make the SoundBoat play a Sound, type: *!sb play [sound]*\n"

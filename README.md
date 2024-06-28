@@ -1,5 +1,4 @@
 ### About: 
-```bash
 The SoundBoat is a Discord Bot, that can join your channel via the command !sb play [name of sound].
 He than plays the sound you chose and leaves the channel.
 A list of sounds can be viewed with the command !sb help
@@ -11,4 +10,9 @@ The SQLite database can be edited with simple SQL commands:
     To list all current sounds: SELECT * from sounds
 
 Obviously the .mp3 file of every sound in the database has to placed inside the 'SoundBoat sounds' file
-```
+
+
+### Getting started
+Prerequisites: python3, pip3, ffmpeg <br>
+Install Python packages: ```pip3 install discord.py PyNaCl``` <br>
+Run ```python3 SoundBoat.py``` to start the bot
