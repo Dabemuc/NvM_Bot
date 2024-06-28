@@ -13,7 +13,7 @@ async def handle_play_command(message, client, voice_clients, dbAPI):
     voice_clients[message.guild.id].play(
         source,
         after= lambda e: asyncio.run_coroutine_threadsafe(
-            await voice_clients[message.guild.id].disconnect(),
+            voice_clients[message.guild.id].disconnect(),
             client.loop
         )
     )

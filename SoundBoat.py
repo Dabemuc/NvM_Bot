@@ -21,7 +21,7 @@ async def on_message(message):
 
     if message.content.__contains__("!sb"):
         if message.content.__contains__("play"):
-            handle_play_command(message, client, voice_clients, dbAPI)
+            await handle_play_command(message, client, voice_clients, dbAPI)
 
         if message.content.__contains__("help"):
             await message.channel.send("To make the SoundBoat play a Sound, type: *!sb play [sound]*\n"
