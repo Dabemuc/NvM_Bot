@@ -21,18 +21,18 @@ def create_connection(path):
     return connection
 
 
-def execute_write_query(query):
-    cursor = con.cursor()
+def execute_write_query(connection, query):
+    cursor = connection.cursor()
     try:
         cursor.execute(query)
-        con.commit()
+        connection.commit()
         print("Query executed successfully")
     except Error as e:
         print(f"The error '{e}' occurred")
 
 
-def execute_read_query(query):
-    cursor = con.cursor()
+def execute_read_query(connection, query):
+    cursor = connection.cursor()
     result = None
     try:
         cursor.execute(query)
@@ -43,7 +43,7 @@ def execute_read_query(query):
 
 
 con = create_connection("./SQLiteTestDB")
-execute_write_query(create_sounds_table)
+execute_write_query(con, create_sounds_table)
 
 
 """ if input ("Do you want to configure Database? (y/n): ") == "y":

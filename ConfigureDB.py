@@ -10,11 +10,11 @@ while True:
         while True:
             q = input("Which type of query shall be executed? (write, read) ")
             if q == "write":
-                db.execute_write_query(SQLCommand)
+                db.execute_write_query(db.con, SQLCommand)
                 SQLCommand = ""
                 break
             if q == "read":
-                result = db.execute_read_query(SQLCommand)
+                result = db.execute_read_query(db.con, SQLCommand)
                 for sound in result:
                     print(sound)
                 SQLCommand = ""
