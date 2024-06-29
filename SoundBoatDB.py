@@ -21,18 +21,18 @@ def create_connection(path):
     return connection
 
 
-def execute_write_query(connection, query):
-    cursor = connection.cursor()
+def execute_write_query(query):
+    cursor = con.cursor()
     try:
         cursor.execute(query)
-        connection.commit()
+        con.commit()
         print("Query executed successfully")
     except Error as e:
         print(f"The error '{e}' occurred")
 
 
-def execute_read_query(connection, query):
-    cursor = connection.cursor()
+def execute_read_query(query):
+    cursor = con.cursor()
     result = None
     try:
         cursor.execute(query)
@@ -43,10 +43,10 @@ def execute_read_query(connection, query):
 
 
 con = create_connection("./SQLiteTestDB")
-execute_write_query(con, create_sounds_table)
+execute_write_query(create_sounds_table)
 
 
-if input ("Do you want to configure Database? (y/n): ") == "y":
+""" if input ("Do you want to configure Database? (y/n): ") == "y":
     print("Enter SQL-Commands (2x Enter executes command):")
     SQLCommand = ""
     while True:
@@ -55,15 +55,15 @@ if input ("Do you want to configure Database? (y/n): ") == "y":
             while True:
                 q = input("Which type of query shall be executed? (write, read) ")
                 if q == "write":
-                    execute_write_query(con, SQLCommand)
+                    execute_write_query(SQLCommand)
                     SQLCommand = ""
                     break
                 if q == "read":
-                    result = execute_read_query(con, SQLCommand)
+                    result = execute_read_query(SQLCommand)
                     for sound in result:
                         print(sound)
                     SQLCommand = ""
                     break
                 print("Please enter valid query type!")
         else:
-            SQLCommand = SQLCommand + "\n" + inp
+            SQLCommand = SQLCommand + "\n" + inp """
