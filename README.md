@@ -20,3 +20,22 @@ The SQLite database can be edited with simple SQL commands:
 - To list all current sounds: SELECT * from sounds
 
 The .mp3 file of every sound in the database has to placed inside the 'SoundBoat sounds' file
+
+
+### Run on startup (Ubuntu with systemd)
+Create new service via ```sudo nano /etc/systemd/system/bot.service``` <br>
+Example service file: (adapt paths etc to your setup)
+```sh
+[Unit]
+Description=Service to run discord bot
+After=network.target
+[Service]
+WorkingDirectory=/home/ubuntu/SoundBoat
+ExecStart=python3 -u SoundBoat.py
+Restart=always
+StandardOutput=inherit
+StandardError=inherit
+User=ubuntu
+[Install]
+WantedBy=multi-user.target
+```
