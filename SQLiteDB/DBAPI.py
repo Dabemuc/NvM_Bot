@@ -1,6 +1,7 @@
 import importlib
 
-db = importlib.import_module("DBMS")
+#db = importlib.import_module("DBMS")
+import SQLiteDB.DBMS as db
 
 
 def getFileName(name):

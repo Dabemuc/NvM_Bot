@@ -7,26 +7,32 @@ from BotFeatures.Play.play import handle_play_command
 load_dotenv()
 
 client = discord.Client(intents=discord.Intents.all())
-dbAPI = importlib.import_module("DBAPI")   # Initialize db
+import SQLiteDB.DBAPI as dbAPI  # Initialize db
 voice_clients = {}    # Manage mulitple connected voice clients
 
 
 @client.event
 async def on_ready():
     print("Bot online, showing as {}".format(client.user))
-    await client.change_presence(activity=discord.Game(os.getenv('BOT_ACTIVITY_STATUS')))
+    await client.change_presence(activity=discord.Game("Try '"+os.getenv("BOT_INVOKE_MSG")+" help'"))
 
 
 @client.event
 async def on_message(message):
+    # dont process msg if bot is author
     if message.author == client.user:
         return
+    
+    # preprocess msg
+    processed_msg = str(message.content).lower()
 
-    if message.content.__contains__(os.getenv('BOT_INVOKE_MSG')):
-        if message.content.__contains__("play"):
+    # handle msg
+    if processed_msg.__contains__(os.getenv('BOT_INVOKE_MSG')):
+        print("Bot invoked with command:", processed_msg)
+        if processed_msg.__contains__("play"):
             await handle_play_command(message, client, voice_clients, dbAPI)
 
-        if message.content.__contains__("help"):
+        if processed_msg.__contains__("help"):
             await message.channel.send("To make the Bot play a Sound, type: "+os.getenv('BOT_INVOKE_MSG')+" play [sound]*\n"
                                        "List of sounds:\n" +
                                        dbAPI.getAllSounds())

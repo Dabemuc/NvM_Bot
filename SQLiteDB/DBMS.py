@@ -42,7 +42,7 @@ def execute_read_query(connection, query):
         print(f"The error '{e}' occurred")
 
 
-con = create_connection("./SQLiteDBFile")
+con = create_connection("./SQLiteDB/SQLiteDBFile")
 execute_write_query(con, create_sounds_table)
 
 
