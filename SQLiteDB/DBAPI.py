@@ -5,7 +5,7 @@ import SQLiteDB.DBMS as db
 
 
 def getFileName(name):
-    temp = str(db.execute_read_query(db.con, "SELECT fileName FROM sounds WHERE name = '{}'".format(name)))
+    temp = str(db.execute_read_query(db.con, "SELECT fileName FROM sounds WHERE LOWER(name) = LOWER('{}')".format(name)))
     mp3ToPlay = temp.replace("[('", "")
     return mp3ToPlay.replace("',)]", "")
 

@@ -23,16 +23,16 @@ async def on_message(message):
     if message.author == client.user:
         return
     
-    # preprocess msg
-    processed_msg = str(message.content).lower()
+    # preprocess msg for command matching
+    processed_msg_content = str(message.content).lower()
 
     # handle msg
-    if processed_msg.__contains__(os.getenv('BOT_INVOKE_MSG')):
-        print("Bot invoked with command:", processed_msg)
-        if processed_msg.__contains__("play"):
+    if processed_msg_content.__contains__(os.getenv('BOT_INVOKE_MSG')):
+        print("Bot invoked with command:", processed_msg_content)
+        if processed_msg_content.__contains__("play"):
             await handle_play_command(message, client, voice_clients, dbAPI)
 
-        if processed_msg.__contains__("help"):
+        if processed_msg_content.__contains__("help"):
             await message.channel.send("To make the Bot play a Sound, type: "+os.getenv('BOT_INVOKE_MSG')+" play [sound]*\n"
                                        "List of sounds:\n" +
                                        dbAPI.getAllSounds())
