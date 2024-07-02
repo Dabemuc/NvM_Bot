@@ -1,6 +1,6 @@
 import importlib
 
-db = importlib.import_module("SoundBoatDB")
+db = importlib.import_module("DBMS")
 
 
 def getFileName(name):

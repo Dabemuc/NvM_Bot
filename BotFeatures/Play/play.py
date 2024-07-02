@@ -7,7 +7,7 @@ async def handle_play_command(message, client, voice_clients, dbAPI):
     await message.channel.send("Playing " + dbAPI.getFileName(mp3ToPlay))
     channel = message.author.voice.channel
     voice_clients[message.guild.id] = await channel.connect()
-    path = "./SoundBoat sounds/{}".format(dbAPI.getFileName(mp3ToPlay))
+    path = "./BotFeatures/Play/Sounds{}".format(dbAPI.getFileName(mp3ToPlay))
     options = {'options': '-vn'}
     source = FFmpegPCMAudio(path, **options)
     voice_clients[message.guild.id].play(

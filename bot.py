@@ -2,12 +2,12 @@ import discord
 import importlib
 import os
 from dotenv import load_dotenv
-from SoundBoatFeatures.SoundBoatPlay import handle_play_command
+from BotFeatures.Play.play import handle_play_command
 
 load_dotenv()
 
 client = discord.Client(intents=discord.Intents.all())
-dbAPI = importlib.import_module("SoundBoatDBAPI")   # Initialize db
+dbAPI = importlib.import_module("DBAPI")   # Initialize db
 voice_clients = {}    # Manage mulitple connected voice clients
 
 
@@ -27,7 +27,7 @@ async def on_message(message):
             await handle_play_command(message, client, voice_clients, dbAPI)
 
         if message.content.__contains__("help"):
-            await message.channel.send("To make the SoundBoat play a Sound, type: *!sb play [sound]*\n"
+            await message.channel.send("To make the Bot play a Sound, type: "+os.getenv('BOT_INVOKE_MSG')+" play [sound]*\n"
                                        "List of sounds:\n" +
                                        dbAPI.getAllSounds())
 
