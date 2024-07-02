@@ -5,7 +5,7 @@ A list of sounds can be viewed with the command !sb help
 
 
 ### Getting started
-Prerequisites: python3, pip3, ffmpeg <br>
+Prerequisites (Install via e.g. apt): python3, python3-dotenv, pip3, ffmpeg <br>
 Install Python packages: ```pip3 install discord.py PyNaCl``` <br>
 Run ```python3 SoundBoat.py``` to start the bot
 
