@@ -30,8 +30,8 @@ Example service file: (adapt paths etc to your setup)
 Description=Service to run discord bot
 After=network.target
 [Service]
-WorkingDirectory=/home/ubuntu/SoundBoat
-ExecStart=python3 -u SoundBoat.py
+WorkingDirectory=/home/ubuntu/NvM_bot
+ExecStart=python3 -u bot.py
 Restart=always
 StandardOutput=inherit
 StandardError=inherit
